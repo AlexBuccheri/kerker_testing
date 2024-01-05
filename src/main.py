@@ -67,7 +67,7 @@ if __name__ == '__main__':
 
     plt.subplot(4, 1, 1)
     plt.plot(x, rho)
-    plt.title(r'$\sin\left(\frac{2\pi n x}{L}\right)$')
+    plt.title(r'$\sum^n \sin\left(\frac{2\pi n x}{L}\right)$')
     plt.xlabel('x')
     plt.ylabel('Amplitude')
 
