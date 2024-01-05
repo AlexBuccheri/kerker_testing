@@ -1,5 +1,11 @@
-"""
+"""Reciprocal space application of Kerker preconditioner, based on:
+ https://doi.org/10.1016/0927-0256(96)00008-0
+ Efficiency of ab-initio total energy calculations for metals and semiconductors using a plane-wave basis set
 
+See eq. 82
+
+Additional reading:
+Efficient iteration scheme for self-consistent pseudopotential calculations
 """
 import numpy as np
 import matplotlib.pyplot as plt
