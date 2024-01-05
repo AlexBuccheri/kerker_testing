@@ -1,5 +1,7 @@
-"""
-Real space application of Kerker pre-conditioner to some trial density
+"""Real space application of Kerker preconditioner, based on:
+
+Modelling Simul. Mater. Sci. Eng. 16 (2008) 035004 (11pp) doi:10.1088/0965-0393/16/3/035004
+Real-space Kerker method for self-consistent calculation using non-orthogonal basis functions
 """
 import numpy as np
 from scipy import integrate
