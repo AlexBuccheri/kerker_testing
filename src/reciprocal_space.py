@@ -19,10 +19,11 @@ def sin_wave(n: int, l: float, x: np.ndarray) -> np.ndarray:
     :param x: Grid that defines the sin wave in real space
     :return:
     """
+    # TODO Normalise
     return np.sin(2 * np.pi * n * x / l)
 
 
-def preconditioner(q: np.ndarray, q0: float) -> np.ndarray:
+def qspace_preconditioner(q: np.ndarray, q0: float) -> np.ndarray:
     """
 
     :param q:
@@ -62,7 +63,7 @@ if __name__ == '__main__':
     # in Fourier series).
     q0 = 2.9
     # For realistic systems, Kresse suggests that 1.5 Angstrom^-1 is always sufficient
-    G = preconditioner(frequencies, q0)
+    G = qspace_preconditioner(frequencies, q0)
     filtered_rho_fft = G * rho_fft
 
     # Back FT
@@ -100,4 +101,5 @@ if __name__ == '__main__':
     plt.legend()
 
     plt.tight_layout()
+    plt.savefig('pre_reciprocal.pdf', dpi=300)
     plt.show()

@@ -1,4 +1,4 @@
-"""Real space application of Kerker preconditioner, based on:
+"""Real space application of Kerker qspace_preconditioner, based on:
 
 Modelling Simul. Mater. Sci. Eng. 16 (2008) 035004 (11pp) doi:10.1088/0965-0393/16/3/035004
 Real-space Kerker method for self-consistent calculation using non-orthogonal basis functions
@@ -142,5 +142,6 @@ if __name__ == '__main__':
     plt.ylabel(r'Preconditioned $\rho(x)$')
     plt.legend()
     plt.show()
+    plt.savefig('pre_real.pdf', dpi=300)
 
     # Check pre-conditioned rho' gives the same result as applying in Fourier space, then FTing back
