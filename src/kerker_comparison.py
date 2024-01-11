@@ -50,11 +50,18 @@ def reciprocal_space_preconditioning(system: System, rho: np.ndarray, q0: float)
     """
     Apply preconditioning in reciprocal space
     Return preconditioned, real-space density
+
+    q0^2 is scaled by (2pi)^2 to account for the convention of the FFTs used in numpy/sypy.
+    That it, exp(-2 pi i G' . r), where G' is not the colloquial definition but G' = G / 2pi
+    To be consistent with the real space definition, one must either use (G, q0), which would require
+     G' -> G, application of preconditioner with q0, then G -> G', or stick with G' and scale q0,
+    such that the filter wave lengths agree in both methods. The latter was simpler.
+
     :return:
     """
     frequencies = np.fft.fftfreq(system.n_points, d=system.spacing)
     rho_q = np.fft.fft(rho)
-    G = frequencies**2 / (frequencies**2 + q0**2)
+    G = frequencies**2 / (frequencies**2 + q0**2 / (4 * np.pi * np.pi))
     preconditioned_rho_q = G * rho_q
     preconditioned_rho_realspace = np.fft.ifft(preconditioned_rho_q)
     return preconditioned_rho_realspace
@@ -64,7 +71,7 @@ if __name__ == '__main__':
     system = System(system_length=10, n_points=500)
 
     # Preconditioning constant
-    q0 = 5.8
+    q0 = 10
 
     # Construct trial density with long and short wave lengths
     rho = sin_wave(1, system.length, system.grid)
