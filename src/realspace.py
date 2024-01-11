@@ -56,7 +56,7 @@ def build_density(coefficients: np.ndarray, grid: np.ndarray, system_length: flo
 def l_matrix_sin_basis(n_basis: int, system_length: float) -> np.ndarray:
     """
     Sin functions are orthogonal, so only define the diagonals.
-    Solution of int_0^L sin(2 pi n / L x) d^2/dx^2 sin(2 pi m / L x) dx
+    Solution of (2 / L) int_0^L sin(2 pi n / L x) d^2/dx^2 sin(2 pi m / L x) dx
     found analytically, for normalised functions.
 
     :param n_basis:
@@ -66,7 +66,7 @@ def l_matrix_sin_basis(n_basis: int, system_length: float) -> np.ndarray:
     l_mat = np.zeros(shape=(n_basis, n_basis))
     for i in range(0, n_basis):
         n = i + 1
-        l_mat[i, i] = - (2. / system_length) * ((2. * np.pi * n) / system_length)**2
+        l_mat[i, i] = - ((2. * np.pi * n) / system_length)**2
     return l_mat
 
 
